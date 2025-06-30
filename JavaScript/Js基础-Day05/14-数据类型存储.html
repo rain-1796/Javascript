@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 堆、栈的理解
+    let num1 = 10
+    let num2 = num1
+    num2 = 20
+    console.log(num1) // 结果是 10
+
+
+    let obj1 = {
+      age: 18
+    }
+    let obj2 = obj1 //只是将 obj1 的地址 赋值给了 obj2，地址指向的内容是相同的
+    // 修改属性
+    obj2.age = 20
+    console.log(obj1.age) //结果是 20
+  </script>
+</body>
+
+</html>

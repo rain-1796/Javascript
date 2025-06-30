@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 每个函数的 prototype 对象都有一个 constructor 属性，它指向该函数本身
+    // ​对象实例可以通过 constructor 属性访问它的构造函数
+
+    // 仅添加方法而不替换整个 prototype , constructor 不会被覆盖
+    // Star.prototype.sing = function () {
+    //   console.log('唱歌')
+    // }
+    // Star.prototype.dance = function () {
+    //   console.log('跳舞')
+    // }
+    function Star() {
+    }
+    // console.log(Star.prototype)
+    // console.log(Star.prototype.constructor === Star)
+
+    // constructor 会被覆盖
+    Star.prototype = {
+      // 重新指回创造这个原型对象的 构造函数
+      constructor: Star,
+      sing: function () {
+        console.log('唱歌')
+      },
+      dance: function () {
+        console.log('跳舞')
+      },
+    }
+    console.log(Star.prototype)
+    // console.log(Star.prototype.constructor)
+
+    // const ldh = new Star()
+    // console.log(Star.prototype.constructor === Star)
+  </script>
+</body>
+
+</html>

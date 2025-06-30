@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .box {
+      width: 500px;
+      height: 500px;
+      background-color: #ccc;
+      color: #fff;
+      text-align: center;
+      font-size: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 节流：单位时间内，频繁触发事件，只执行 一次 -->
+
+  <div class="box"></div>
+  <script>
+    const box = document.querySelector('.box')
+    let i = 1  // 让这个变量++
+    // 鼠标移动函数
+    function mouseMove() {
+      box.innerHTML = ++i
+      // 如果里面存在大量操作 dom 的情况，可能会卡顿
+    }
+
+    function throttle(fn, t) {
+      let timeId = null
+      return function () {
+        if (!timeId) { // 相当于上锁，3秒之内无论怎么移动鼠标也不会执行 fn()
+          timeId = setTimeout(function () {
+            fn()
+            // 执行完 fn()后，清除定时器 在 setTimeout内部 必须要置为 null
+            timeId = null
+
+            // 定时器执行完毕后会自动清除，所有下面这行代码没有意义
+            // 我们的目标是让 timeId 变为0
+            // clearTimeout(timeId)
+            // console.log(timeId)
+          }, t);
+        }
+      }
+    }
+
+    box.addEventListener('mousemove', throttle(mouseMove, 3000))
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 构造函数可以快速地创建多个类似的对象
+
+    // 创建一个猪 构造函数 
+    // 构造函数一般以大写字母开头
+    // 构造函数自动返回新创建的对象,不需要 return
+    function Pig(uname, age) {
+      // this 就是 新创建的对象
+      this.uname = uname
+      this.age = age
+    }
+
+    // console.log(new Pig('佩奇', 6))
+    // console.log(new Pig('乔治', 3))
+    // 对象实例化
+    const p = new Pig('佩奇', 6)
+    console.log(p)
+
+    //  const pepa = { uname: '佩奇', age: 6 }
+
+    // const obj = new Object()
+
+    function Goods(name, price, count) {
+      this.name = name
+      this.price = price
+      this.count = count
+      this.sayhi = function () { }
+    }
+    const mi = new Goods('小米', 1999, 20)
+    console.log(mi)
+    const hw = new Goods('华为', 3999, 59)
+    console.log(hw)
+    console.log(mi === hw)
+    mi.name = 'vivo'
+    console.log(mi)
+    console.log(hw)
+    // const date = new Date('2022-4-8')
+    // console.log(date)
+
+    // 静态成员: 构造函数的属性和方法
+    // 静态成员只能被构造函数访问
+    Goods.num = 10
+    console.log(Goods.num)
+    
+    Goods.sayhi = function () { }
+  </script>
+</body>
+
+</html>

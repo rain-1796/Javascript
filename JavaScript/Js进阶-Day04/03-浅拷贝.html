@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 浅拷贝是指创建一个新对象，这个新对象拥有原始对象属性值的一份精确拷贝。
+    // 如果属性是基本类型（如字符串、数字等），拷贝的就是基本类型的值；
+
+    // 如果属性是引用类型（如对象、数组等），拷贝的就是内存地址（引用），
+    // 因此原始对象和拷贝对象中的引用类型属性会指向同一个内存地址。
+
+    const obj = {
+      uname: 'pink',
+      age: 18,
+      // 这里 famil 就是对象，浅拷贝的是地址
+      family: {
+        baby: '小pink'
+      }
+    }
+    // 浅拷贝 
+
+    // 用展开运算符
+    // const o = { ...obj }
+    // console.log(o)
+    // o.age = 20
+    // console.log(o)
+    // console.log(obj)
+
+    // 用 assign 方法
+    const o = {}
+    Object.assign(o, obj)
+    o.age = 20
+
+    o.family.baby = '老pink'
+    console.log(o)
+    console.log(obj)
+  </script>
+</body>
+
+</html>

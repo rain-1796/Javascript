@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .box {
+      width: 500px;
+      height: 500px;
+      background-color: #ccc;
+      color: #fff;
+      text-align: center;
+      font-size: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 防抖：单位时间内，频繁触发事件，只执行 最后一次 -->
+
+  <!-- 只要鼠标在 200ms 内移动，mouseMove ​不会执行。
+  ​只有鼠标停止移动 200ms 后，i 才会增加 1。 -->
+  <div class="box"></div>
+  <script>
+    const box = document.querySelector('.box')
+    let i = 1  // 让这个变量++
+    // 鼠标移动函数
+    function mouseMove() {
+      box.innerHTML = ++i
+      // 如果里面存在大量操作 dom 的情况，可能会卡顿
+    }
+    // 防抖函数
+    function debounce(fn, t) {
+      // 设置定时器变量
+      let timeId // 这个变量会被闭包记住
+      console.log('只执行一次');
+
+      // 这里用到了闭包
+      return function () {
+        // 如果有定时器就清除 timeId不会被清除,它会 2,3,4...的递增
+        if (timeId) clearTimeout(timeId)
+        // 开启定时器 200
+        timeId = setTimeout(function () {
+          fn()
+        }, t)
+      }
+    }
+
+    // ​addEventListener 只需要绑定一次，它会记住你给它的回调函数。
+    box.addEventListener('mousemove', debounce(mouseMove, 200))
+
+    // 第一次绑定后接收返回值
+    // debounce(mouseMove, 200) = function()
+
+    // 往后鼠标移动时，都会执行 function() 可以把它看作是 鼠标移动这个事件的 一个性质
+  </script>
+</body>
+
+</html>
